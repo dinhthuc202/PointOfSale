@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "DjMO7U4sb7jjPEBMOETpem5ql0I81nujdceRb7qGUls=",
+  "Source": "API_POS",
+  "BasePath": "_content/API_POS",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
