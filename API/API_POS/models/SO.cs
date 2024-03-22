@@ -26,7 +26,7 @@ namespace API_POS.models
         public string? Remarks { get; set; }
         public string? Remarks2 { get; set; }
         public long? EmployeeId { get; set; }
-        //public List<SOD> sODs { get; set; } = null!;
+        public List<SOD> sODs { get; set; } = null!;
     }
 
     public class SOInput

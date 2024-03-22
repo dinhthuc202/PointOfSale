@@ -1,13 +1,8 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-import 'package:pos/constants/apis.dart';
-
 class Customer {
   Customer({
     this.id,
-    required this.name,
-    required this.address,
+    this.name,
+    this.address,
     this.balance,
     this.remarks,
     this.createDate,
@@ -15,14 +10,14 @@ class Customer {
     this.bizId,
   });
 
-  late final int? id;
-  late final String name;
-  late final String address;
-  late final int? balance;
-  late final String? remarks;
-  late final String? createDate;
-  late final String? updateDate;
-  late final String? bizId;
+  late int? id;
+  late String? name;
+  late String? address;
+  late int? balance;
+  late String? remarks;
+  late String? createDate;
+  late String? updateDate;
+  late String? bizId;
 
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];

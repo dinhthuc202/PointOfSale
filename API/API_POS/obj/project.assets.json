@@ -1406,11 +1406,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Scorpion\\source\\repos\\API_POS\\API_POS\\API_POS.csproj",
+      "projectUniqueName": "C:\\Users\\Scorpion\\Documents\\POS\\API\\API_POS\\API_POS.csproj",
       "projectName": "API_POS",
-      "projectPath": "C:\\Users\\Scorpion\\source\\repos\\API_POS\\API_POS\\API_POS.csproj",
+      "projectPath": "C:\\Users\\Scorpion\\Documents\\POS\\API\\API_POS\\API_POS.csproj",
       "packagesPath": "C:\\Users\\Scorpion\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Scorpion\\source\\repos\\API_POS\\API_POS\\obj\\",
+      "outputPath": "C:\\Users\\Scorpion\\Documents\\POS\\API\\API_POS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Scorpion\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1488,7 +1488,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

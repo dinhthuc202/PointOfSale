@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pos/constants/controllers.dart';
+import 'package:pos/controllers/sale_order_controller.dart';
 import '../../../constants/style.dart';
 import '../../../models/product.dart';
 import '../../../widgets/custom_text.dart';
@@ -91,7 +92,7 @@ class _FormProductState extends State<FormProduct> {
                   required: true,
                 ),
                 SizedBox(
-                  width: (width - 200) * 0.25,
+                  width: (width - 190) * 0.25,
                 ),
                 RowInputWidget(
                   textEditingController:
@@ -300,27 +301,35 @@ class TextFieldWidget extends StatelessWidget {
   }
 }
 
-//--
 class DropdownSearchWidget extends StatefulWidget {
   final List<String> listItem;
   final TextEditingController textEditingController;
+  final bool? isNewSale;
+  final String? itemDefault;
 
   const DropdownSearchWidget(
-      {super.key, required this.listItem, required this.textEditingController});
+      {super.key, required this.listItem, required this.textEditingController, this.isNewSale, this.itemDefault});
 
   @override
   State<DropdownSearchWidget> createState() => _DropdownSearchWidgetState();
 }
 
 class _DropdownSearchWidgetState extends State<DropdownSearchWidget> {
+  SaleOrderController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(
       items: widget.listItem,
+        selectedItem: widget.textEditingController.text,
       onChanged: (value) {
+        print(value);
         widget.textEditingController.text = value!;
+        if (widget.isNewSale == true) {
+          controller.changeCustomer(value);
+        }
       },
       popupProps: PopupProps.menu(
+
         searchFieldProps: TextFieldProps(
           autofocus: true,
           decoration: InputDecoration(
@@ -363,24 +372,10 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
           ),
           onChanged: (value) {
             setState(() {
-              //widget.textEditingController.text = value!.toString();
               productController.saleable.value = value!;
             });
           },
         ));
-    //   Checkbox(
-    //   value: productController.saleable.value,
-    //   // value: widget.textEditingController.text.toLowerCase() == 'true',
-    //   side: const BorderSide(
-    //     width: 0.9,
-    //   ),
-    //   onChanged: (value) {
-    //     setState(() {
-    //       //widget.textEditingController.text = value!.toString();
-    //       productController.saleable.value = value!;
-    //     });
-    //   },
-    // );
   }
 }
 
@@ -398,6 +393,9 @@ class RowInputWidget extends StatelessWidget {
   final double? height;
   final List<String>? listItem;
   final Color? color;
+  final VoidCallbackAction? onChange;
+  final bool? isNewSale;
+  final double? textSize;
 
   const RowInputWidget({
     super.key,
@@ -411,13 +409,13 @@ class RowInputWidget extends StatelessWidget {
     this.isNumber = false,
     this.isCheckBox,
     this.listItem,
-    this.required, this.color,
+    this.required, this.color, this.onChange, this.isNewSale, this.textSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0, right: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10.0, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -434,7 +432,7 @@ class RowInputWidget extends StatelessWidget {
                         .isNotEmpty
                         ? title
                         : title,
-                    size: 13,
+                    size:textSize ?? 13,
                     color: required == true &&
                         productController.buttonCheckNull.value == true &&
                         textEditingController!.text.isEmpty
@@ -459,6 +457,8 @@ class RowInputWidget extends StatelessWidget {
                 ? DropdownSearchWidget(
                     listItem: listItem!,
                     textEditingController: textEditingController!,
+              //onChange: onChange,
+              isNewSale: isNewSale,
                   )
                 : (isCheckBox == true
                     ? const Row(

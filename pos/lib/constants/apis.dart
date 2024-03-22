@@ -5,7 +5,9 @@ import 'package:pos/models/supplier.dart';
 
 import '../models/customer.dart';import 'package:http/http.dart' as http;
 
-String urlApi = "https://picked-remarkably-toucan.ngrok-free.app/";
+//String urlApi = "https://picked-remarkably-toucan.ngrok-free.app/";
+//String urlApi = "http://10.0.2.2:90/";
+String urlApi = "http://127.0.0.1:90/";
 class APIs{
   //Customer
   static Future<List<Customer>> getListCustomer() async {

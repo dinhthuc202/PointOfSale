@@ -20,23 +20,24 @@ class Product {
      this.updateDate,
   });
   late final int? id;
-  late final String name;
-  late final double? purchasePrice;
-  late final double? salePrice;
-  late final double? stock;
-  late final int? perPack;
-  late final double? totalPiece;
-  late final bool? saleable;
-  late final String? rackPosition;
-  late final int? supplierId;
-  late final String? image;
-  late final String? remarks;
-  late final String? barCode;
-  late final int? reOrder;
-  late final int? locationId;
-  late final int? categoryId;
-  late final String? createDate;
-  late final String? updateDate;
+  late  String name;
+  late  double? purchasePrice;
+  late  double? salePrice;
+  late  double? stock;
+  late  int? perPack;
+  late  double? totalPiece;
+  late  bool? saleable;
+  late  String? rackPosition;
+  late  int? supplierId;
+  late  String? image;
+  late  String? remarks;
+  late  String? barCode;
+  late  int? reOrder;
+  late  int? locationId;
+  late  int? categoryId;
+  late  String? createDate;
+  late  String? updateDate;
+  late  int? quantity;
 
   Product.fromJson(Map<String, dynamic> json){
     id = json['id'];

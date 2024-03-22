@@ -1,5 +1,6 @@
 ﻿using API_POS.models;
 using AutoMapper;
+using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
@@ -48,6 +49,41 @@ namespace API_POS.Controllers
                     payment.PaymentMethod = so.PaymentMethod;
                     insertedCount2 = connection.BulkInsert(payment).Actions.Count;
                     return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(string? filter)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(Common.connectionString))
+                {
+                    await connection.OpenAsync();
+                    string query = "SELECT * FROM [SO]";
+                    IEnumerable<SO> sOs = await connection.QueryAsync<SO>(query);
+                    List<SO> sOsList = sOs.ToList();
+
+                    if (sOs != null)
+                    {
+                        for (int i = 0; i < sOsList.Count; i++)
+                        {
+                            string tmp = @$"SELECT * FROM [SOD] Where SOId = '{sOsList[i].Id}'";
+                            IEnumerable<SOD> sODs = await connection.QueryAsync<SOD>(query);
+                            sOsList[i].sODs = sODs.ToList();
+                        }
+                    }
+
+                    return Ok(new
+                    {
+                        success = true,
+                        sOsList,
+                    });
                 }
             }
             catch (Exception ex)

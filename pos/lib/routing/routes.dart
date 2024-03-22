@@ -8,6 +8,9 @@ const homePageRoute = "/home";
 const newSalePageDisplayName = "New Sale";
 const newSalePageRoute = "/newSale";
 
+const newSalePage2DisplayName = "New Sale 2";
+const newSale2PageRoute = "/NewSale2";
+
 const newProductDisplayName = "New Product";
 const newProductPageRoute = "/newProduct";
 
@@ -42,6 +45,7 @@ List<DauMucItems> listButtonMenu = [
 
 List<MenuItem> itemSale = [
   MenuItem(newSalePageDisplayName, newSalePageRoute),
+  MenuItem(newSalePage2DisplayName, newSale2PageRoute),
 ];
 
 List<MenuItem> itemProducts = [

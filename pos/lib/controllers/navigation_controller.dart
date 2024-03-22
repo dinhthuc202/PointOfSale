@@ -10,5 +10,4 @@ class NavigationController extends GetxController{
   }
 
   goBack() => navigatorKey.currentState?.pop();
-
 }

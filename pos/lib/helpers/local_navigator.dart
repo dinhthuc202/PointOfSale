@@ -7,5 +7,5 @@ Navigator localNavigator() => Navigator(
       key: navigationController.navigatorKey,
       onGenerateRoute: generateRoute,
       //initialRoute: homePageRoute,
-      initialRoute: newSalePageRoute,
+      initialRoute: newSale2PageRoute,
     );

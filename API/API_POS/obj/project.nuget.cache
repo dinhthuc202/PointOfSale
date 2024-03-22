@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e2wCLuWMASyhlLbkftY+gGRa7bbqBcYJlzLGnNt8Vu5GIrevVqhc+FLojqLfJrWkHYX3D+vL3tw8t2WpgaAXsQ==",
+  "dgSpecHash": "1zRSYdUjAt+qLyFE5ytMI6D87M8TEQTEB3Qu4OQUfb3uCGJWXnlEhEQS9DQqllgdr27cUemqL1PT2Va5+7XVRw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Scorpion\\source\\repos\\API_POS\\API_POS\\API_POS.csproj",
+  "projectFilePath": "C:\\Users\\Scorpion\\Documents\\POS\\API\\API_POS\\API_POS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Scorpion\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Scorpion\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

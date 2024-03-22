@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pos/pages/products/new_product_page.dart';
 import 'package:pos/pages/sale/new_sale.dart';
+import 'package:pos/pages/sale/new_sale2.dart';
 import 'package:pos/routing/routes.dart';
 import '../pages/home_page.dart';
 import '../pages/products/list_product.dart';
@@ -18,11 +19,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const ListProductPage());
     case newSalePageRoute:
       return _getPageRoute(const NewSalePage());
+    case newSale2PageRoute:
+      return _getPageRoute(const NewSale2Page());
     default:
       return _getPageRoute(const HomePage());
   }
 }
-// SelectionArea có thể copy được nội dung bên trong
 PageRoute _getPageRoute(Widget child) {
   return MaterialPageRoute(builder: (context) =>  SelectionArea(child: child));
 }
