@@ -74,6 +74,7 @@ class _FormProductState extends State<FormProduct> {
         totalPieceController.text.isEmpty ||
         supplierController.text.isEmpty;
   }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -86,8 +87,7 @@ class _FormProductState extends State<FormProduct> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 RowInputWidget(
-                  textEditingController:
-                      productNameController,
+                  textEditingController: productNameController,
                   title: 'Product Name',
                   required: true,
                 ),
@@ -95,8 +95,7 @@ class _FormProductState extends State<FormProduct> {
                   width: (width - 190) * 0.25,
                 ),
                 RowInputWidget(
-                  textEditingController:
-                      purchasePriceController,
+                  textEditingController: purchasePriceController,
                   title: 'Purchase Price',
                   required: true,
                   isDecimal: true,
@@ -107,8 +106,7 @@ class _FormProductState extends State<FormProduct> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 RowInputWidget(
-                    textEditingController:
-                        salePriceController,
+                    textEditingController: salePriceController,
                     title: 'Sale Price',
                     required: true,
                     isDecimal: true),
@@ -144,8 +142,7 @@ class _FormProductState extends State<FormProduct> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 RowInputWidget(
-                    textEditingController:
-                        rackPositionController,
+                    textEditingController: rackPositionController,
                     title: 'Rack Position'),
                 SizedBox(
                   width: (width - 200) * 0.25,
@@ -155,23 +152,26 @@ class _FormProductState extends State<FormProduct> {
                   title: 'Supplier',
                   isDropdownSearch: true,
                   required: true,
-                  listItem:productController.suppliers
+                  listItem: productController.suppliers
                       .map((supplier) => supplier.name.toString())
                       .toList(),
                 ),
               ],
             ),
             const RowInputWidget(
-                title: 'Saleable', required: true, isCheckBox: true),
+              title: 'Saleable',
+              required: true,
+              isCheckBox: true,
+            ),
           ],
         ),
-         Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElevatedButton(
-                onPressed:clearValueController,
+                onPressed: clearValueController,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: active,
                   shape: RoundedRectangleBorder(
@@ -202,28 +202,20 @@ class _FormProductState extends State<FormProduct> {
                   } else {
                     Product product = Product(
                       name: productNameController.text,
-                      purchasePrice: double.parse(
-                          purchasePriceController.text),
-                      salePrice: double.parse(
-                          salePriceController.text),
+                      purchasePrice: double.parse(purchasePriceController.text),
+                      salePrice: double.parse(salePriceController.text),
                       stock: stockController.text.isEmpty
                           ? null
-                          : double.parse(
-                              stockController.text),
-
+                          : double.parse(stockController.text),
                       perPack: perPackController.text.isEmpty
                           ? null
                           : int.parse(perPackController.text),
-                      totalPiece: double.parse(
-                          totalPieceController.text),
-                      saleable:productController.saleable.value,
-                      rackPosition:
-                          rackPositionController.text,
-                      supplierId:productController.suppliers
+                      totalPiece: double.parse(totalPieceController.text),
+                      saleable: productController.saleable.value,
+                      rackPosition: rackPositionController.text,
+                      supplierId: productController.suppliers
                           .firstWhere(
-                            (item) =>
-                                item.name ==
-                                supplierController.text,
+                            (item) => item.name == supplierController.text,
                           )
                           .id,
                     );
@@ -265,26 +257,29 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final bool? isDecimal;
   final bool? isNumber;
+  final Function? onChange;
 
   const TextFieldWidget({
     super.key,
     required this.controller,
     this.isDecimal = false,
     this.isNumber = false,
+    this.onChange,
   });
 
   @override
   Widget build(BuildContext context) {
     List<TextInputFormatter> inputFormatters = [];
     if (isDecimal == true) {
-      inputFormatters
-          .add(FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')));
+      inputFormatters = inputFormattersDecimal;
     }
     if (isNumber == true) {
-      inputFormatters.add(FilteringTextInputFormatter.allow(
-          RegExp(r'^[1-9]\d*\.?\d{0,2}|0?\.\d{0,2}$')));
+      inputFormatters = inputFormattersInt;
     }
     return TextField(
+      onChanged: (value) {
+        onChange!(value);
+      },
       style: const TextStyle(fontSize: 12),
       inputFormatters: inputFormatters,
       controller: controller,
@@ -304,11 +299,15 @@ class TextFieldWidget extends StatelessWidget {
 class DropdownSearchWidget extends StatefulWidget {
   final List<String> listItem;
   final TextEditingController textEditingController;
-  final bool? isNewSale;
   final String? itemDefault;
+  final Function? onChange;
 
   const DropdownSearchWidget(
-      {super.key, required this.listItem, required this.textEditingController, this.isNewSale, this.itemDefault});
+      {super.key,
+      required this.listItem,
+      required this.textEditingController,
+      this.itemDefault,
+      this.onChange});
 
   @override
   State<DropdownSearchWidget> createState() => _DropdownSearchWidgetState();
@@ -316,20 +315,17 @@ class DropdownSearchWidget extends StatefulWidget {
 
 class _DropdownSearchWidgetState extends State<DropdownSearchWidget> {
   SaleOrderController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(
       items: widget.listItem,
-        selectedItem: widget.textEditingController.text,
+      selectedItem: widget.textEditingController.text,
       onChanged: (value) {
-        print(value);
-        widget.textEditingController.text = value!;
-        if (widget.isNewSale == true) {
-          controller.changeCustomer(value);
-        }
+        // widget.textEditingController.text = value!;
+        widget.onChange!(value);
       },
       popupProps: PopupProps.menu(
-
         searchFieldProps: TextFieldProps(
           autofocus: true,
           decoration: InputDecoration(
@@ -351,10 +347,11 @@ class _DropdownSearchWidgetState extends State<DropdownSearchWidget> {
 
 //--
 class CheckBoxWidget extends StatefulWidget {
-  //final TextEditingController textEditingController;
+  final Function onChange;
 
   const CheckBoxWidget({
     super.key,
+    required this.onChange,
   });
 
   @override
@@ -372,7 +369,8 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
           ),
           onChanged: (value) {
             setState(() {
-              productController.saleable.value = value!;
+              widget.onChange(value);
+              //productController.saleable.value = value!;
             });
           },
         ));
@@ -393,9 +391,9 @@ class RowInputWidget extends StatelessWidget {
   final double? height;
   final List<String>? listItem;
   final Color? color;
-  final VoidCallbackAction? onChange;
-  final bool? isNewSale;
+  final Function? onChange;
   final double? textSize;
+  final String? itemDefault;
 
   const RowInputWidget({
     super.key,
@@ -409,7 +407,10 @@ class RowInputWidget extends StatelessWidget {
     this.isNumber = false,
     this.isCheckBox,
     this.listItem,
-    this.required, this.color, this.onChange, this.isNewSale, this.textSize,
+    this.required,
+    this.color,
+    this.textSize,
+    this.onChange, this.itemDefault,
   });
 
   @override
@@ -421,21 +422,21 @@ class RowInputWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-              width: 180,
+              width: 150,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomText(
                     text: productController.buttonCheckNull.value
-                        .toString()
-                        .isNotEmpty
+                            .toString()
+                            .isNotEmpty
                         ? title
                         : title,
-                    size:textSize ?? 13,
+                    size: textSize ?? 13,
                     color: required == true &&
-                        productController.buttonCheckNull.value == true &&
-                        textEditingController!.text.isEmpty
+                            productController.buttonCheckNull.value == true &&
+                            textEditingController!.text.isEmpty
                         ? Colors.red
                         : Colors.black,
                   ),
@@ -455,21 +456,30 @@ class RowInputWidget extends StatelessWidget {
             height: height ?? 30,
             child: isDropdownSearch == true
                 ? DropdownSearchWidget(
+              itemDefault: itemDefault,
+                    onChange: (value) {
+                      onChange!(value);
+                    },
                     listItem: listItem!,
                     textEditingController: textEditingController!,
-              //onChange: onChange,
-              isNewSale: isNewSale,
+                    //onChange: onChange,
                   )
                 : (isCheckBox == true
-                    ? const Row(
+                    ? Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CheckBoxWidget(
-                              //textEditingController: textEditingController!
-                              ),
+                            onChange: (value) {
+                              onChange!(value);
+                            },
+                            //textEditingController: textEditingController!
+                          ),
                         ],
                       )
                     : TextFieldWidget(
+                        onChange: (value) {
+                          onChange!(value);
+                        },
                         controller: textEditingController!,
                         isDecimal: isDecimal,
                         isNumber: isNumber,

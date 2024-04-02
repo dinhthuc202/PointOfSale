@@ -19,6 +19,7 @@ dependencies:
   http: ^1.2.1
   dropdown_search: ^5.0.6
   intl: ^0.19.0
+  number_to_vietnamese_words: ^1.0.1+1
 
 dev_dependencies:
   flutter_test:

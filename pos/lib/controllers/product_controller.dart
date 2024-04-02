@@ -9,6 +9,7 @@ class ProductController extends GetxController {
   static ProductController instance = Get.find();
   RxBool buttonCheckNull = false.obs;
   late List<Supplier> suppliers;
+  late List<Product> products;
 
   //late TextEditingController saleableController;
   var saleable = false.obs;
@@ -26,7 +27,7 @@ class ProductController extends GetxController {
     return await APIs.postProduct(product);
   }
 
-  Future<List<Product>> getListProduct() async {
-    return await APIs.getListProduct();
+  Future<void> getDataProduct() async{
+    products = await APIs.getListProduct();
   }
 }

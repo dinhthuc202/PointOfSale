@@ -107,6 +107,7 @@ class SODs {
     this.soid,
     this.sodid,
     this.productId,
+    this.productName,
     this.openingStock,
     this.quantity,
     this.salePrice,
@@ -123,6 +124,7 @@ class SODs {
   late String? soid;
   late int? sodid;
   late int? productId;
+  late String? productName;
   late double? openingStock;
   late int? quantity;
   late double? salePrice;

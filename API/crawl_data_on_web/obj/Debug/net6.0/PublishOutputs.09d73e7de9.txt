@@ -1,0 +1,10 @@
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\crawl_data_on_web.exe
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\selenium-manager\linux\selenium-manager
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\selenium-manager\macos\selenium-manager
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\selenium-manager\windows\selenium-manager.exe
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\crawl_data_on_web.dll
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\crawl_data_on_web.deps.json
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\crawl_data_on_web.runtimeconfig.json
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\crawl_data_on_web.pdb
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\Newtonsoft.Json.dll
+C:\Users\Scorpion\Documents\POS\API\crawl_data_on_web\bin\Debug\net6.0\publish\WebDriver.dll

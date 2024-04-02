@@ -19,8 +19,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const ListProductPage());
     case newSalePageRoute:
       return _getPageRoute(const NewSalePage());
-    case newSale2PageRoute:
-      return _getPageRoute(const NewSale2Page());
+    // case newSale2PageRoute:
+    //   return _getPageRoute(const NewSale2Page());
     default:
       return _getPageRoute(const HomePage());
   }

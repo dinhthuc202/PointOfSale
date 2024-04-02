@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("crawl_data_on_web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63c2cd65ac1c93390fb498e468ea12b71ec82e60")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e66cebd27592c89246ed865e40663e7d218b16a")]
 [assembly: System.Reflection.AssemblyProductAttribute("crawl_data_on_web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("crawl_data_on_web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

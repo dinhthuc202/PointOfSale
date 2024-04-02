@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pos/constants/controllers.dart';
 import 'package:pos/controllers/menu_controller.dart' as menu_controller;
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,13 +17,14 @@ void main() {
   Get.put(NavigationController());
   Get.lazyPut(() => ProductController());
   Get.lazyPut(() => UserController());
-  Get.lazyPut(()=>SaleOrderController());
+  Get.lazyPut(() => SaleOrderController());
 
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -32,22 +32,27 @@ class MyApp extends StatelessWidget {
       initialRoute: rootRoute,
       //initialRoute: authenticationPageRoute,
 
-      unknownRoute: GetPage(name: '/not-found', page: () => const PageNotFound(),
-          transition: Transition.fadeIn,
-          ),
+      unknownRoute: GetPage(
+        name: '/not-found',
+        page: () => const PageNotFound(),
+        transition: Transition.fadeIn,
+      ),
       getPages: [
         GetPage(
             name: rootRoute,
             page: () {
               return SiteLayout();
             }),
-        GetPage(name: authenticationPageRoute, page: () => const AuthenticationPage()),
+        GetPage(
+            name: authenticationPageRoute,
+            page: () => const AuthenticationPage()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Dashboard',
       theme: ThemeData(
         scaffoldBackgroundColor: light,
-        textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.black),
+        textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme)
+            .apply(bodyColor: Colors.black),
         pageTransitionsTheme: const PageTransitionsTheme(builders: {
           TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
           TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),

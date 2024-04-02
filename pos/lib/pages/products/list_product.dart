@@ -15,13 +15,8 @@ class ListProductPage extends StatefulWidget {
 
 class _ListProductPageState extends State<ListProductPage> {
   final TextEditingController _searchController = TextEditingController();
-  List<Product> products = [];
   List<Product> searchList = [];
   final bool _isSearching = false;
-
-  Future fetchData() async {
-    products = await productController.getListProduct();
-  }
 
   @override
   void initState() {
@@ -56,7 +51,7 @@ class _ListProductPageState extends State<ListProductPage> {
                 color: Colors.grey[50],
                 border: Border.all(color: Colors.black12)),
             child: FutureBuilder(
-              future: fetchData(),
+              future: productController.getDataProduct(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -76,7 +71,7 @@ class _ListProductPageState extends State<ListProductPage> {
                                 controller: _searchController,
                                 onChanged: (value) {
                                   searchList.clear();
-                                  for (var i in products) {
+                                  for (var i in productController.products) {
                                     if (i.name
                                             .toLowerCase()
                                             .contains(value.toLowerCase()) ||
@@ -122,7 +117,7 @@ class _ListProductPageState extends State<ListProductPage> {
                                   itemCount: _isSearching ||
                                           _searchController.text.isNotEmpty
                                       ? searchList.length
-                                      : products.length,
+                                      : productController.products.length,
                                   separatorBuilder: (context, index) {
                                     return Container(
                                       color: lightGrey,
@@ -137,7 +132,7 @@ class _ListProductPageState extends State<ListProductPage> {
                                       product: _isSearching ||
                                               _searchController.text.isNotEmpty
                                           ? searchList[index]
-                                          : products[index],
+                                          : productController.products[index],
                                     );
                                   }),
                             )

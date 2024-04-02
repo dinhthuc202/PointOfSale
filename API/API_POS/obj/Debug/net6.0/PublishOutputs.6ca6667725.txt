@@ -6,7 +6,6 @@ C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\API_POS.dep
 C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\API_POS.runtimeconfig.json
 C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\API_POS.pdb
 C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\AutoMapper.dll
-C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\Dapper.dll
 C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\Microsoft.OpenApi.dll
 C:\Users\Scorpion\Documents\POS\API\API_POS\bin\Debug\net6.0\publish\Swashbuckle.AspNetCore.Swagger.dll
